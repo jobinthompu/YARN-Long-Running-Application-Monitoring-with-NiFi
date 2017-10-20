@@ -12,9 +12,9 @@ Simple NiFi flow to monitor and Alert on a Long Running YARN Application.
 
 ## Prerequisite
 
-- Make sure you have your HDF Sandbox up and running. you can download HDF Sandbox [here](https://hortonworks.com/downloads/)
+- Make sure you have your HDF Sandbox up and running. You can download HDF Sandbox [here](https://hortonworks.com/downloads/)
 
-- NiFi_1.2/HDF_3.0 is available on Sandbox and running. In case you are not using HDF sandbox makesure you have latest NiFi is downloaded on your machine or Installed via Ambari.
+- NiFi_1.2/HDF_3.0 is available on Sandbox and running. In case you are not using HDF sandbox makesure you have latest NiFi downloaded on your machine or Installed via Ambari.
 
 ## Steps:
 
