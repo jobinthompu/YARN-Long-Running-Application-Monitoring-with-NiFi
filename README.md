@@ -31,13 +31,13 @@ Configure Processor with URL given as below, which pulls all Applications in Run
 http://sandbox-hdf.hortonworks.com:18088/ws/v1/cluster/apps?states=RUNNING
 ```
 
-![alt tag](https://github.com/jobinthompu/YARN-Application-Monitoring-with-NiFi/blob/master/Resources/images/1.GetHTTP-processor.jpg)
+![alt tag](https://github.com/jobinthompu/YARN-Long-Running-Application-Monitoring-with-NiFi/blob/master/Resources/images/1.Query_ResourceManager.jpg)
 
 Lets schedule the processor to run only every 10sec so that you don’t query too often.
 
 2) To make sure the json file received is sent only down stream if its not empty (i.e no jobs are running on the cluster), add a RouteText processor to check null in the content as below:
 
-![alt tag](https://github.com/jobinthompu/YARN-Application-Monitoring-with-NiFi/blob/master/Resources/images/1.GetHTTP-processor.jpg)
+![alt tag](https://github.com/jobinthompu/YARN-Long-Running-Application-Monitoring-with-NiFi/blob/master/Resources/images/2.Check_For_Empty_Json.jpg)
 
 Route on unmatched relation, only when json is not empty. Auto terminate null connection created above. Connect GetHTTP processor to RouteText for success relation
 
@@ -47,37 +47,50 @@ Route on unmatched relation, only when json is not empty. Auto terminate null co
 Provide “JsonPath Expression” value as  “$.apps.app”  in the configuration.
 ```
 
-![alt tag](https://github.com/jobinthompu/YARN-Application-Monitoring-with-NiFi/blob/master/Resources/images/2.SplitJson.jpg)
+![alt tag](https://github.com/jobinthompu/YARN-Long-Running-Application-Monitoring-with-NiFi/blob/master/Resources/images/3.Separate_Jobs.jpg)
  
 4) Connect RouteText to SplitJson for 'unmatched' relation and auto terminate 'null' relation.
 
 5) Lets add EvaluateJsonPath processor to extract required fields and add them to flow-file attribute: Configure it as below:
 
-![alt tag](https://github.com/jobinthompu/YARN-Application-Monitoring-with-NiFi/blob/master/Resources/images/3.EvaluateJsonPath.jpg)
+![alt tag](https://github.com/jobinthompu/YARN-Long-Running-Application-Monitoring-with-NiFi/blob/master/Resources/images/4.Extract_Job_Info.jpg)
 
-5) Connect SplitJson to EvaluateJsonPath for success relation.
+ Extracted Attribute 'ElapsedTime' is the key player here which tell how long the application was running.
 
-6) Create and start two controller services: DistributedMapCacheClientService, DistributedMapCacheServer so that we keep track of all the applications and don’t sent out duplicate alerts for same application.
+6) Connect SplitJson to EvaluateJsonPath for 'split' relation.
 
-![alt tag](https://github.com/jobinthompu/YARN-Application-Monitoring-with-NiFi/blob/master/Resources/images/4.DistributedMapCacheClientService.jpg)
+7) Add a RouteOnAttribute processor to the canvas to check value of 'ElapsedTime', here lets check and alert on all application passed 1 Hour and 10 hours. 
 
-7) Add a PutDistributedMapCache processor to update the cache with latest apps that fails/killed. Configure it as below adding Distributed cache service.
+```
+10hr 	: ${ElapsedTime:gt(36000000)}
+1hr 	: ${ElapsedTime:gt(3600000)}
+```
+![alt tag](https://github.com/jobinthompu/YARN-Long-Running-Application-Monitoring-with-NiFi/blob/master/Resources/images/5.Check_Elapsedtime_1hr_10hr.jpg)
 
-![alt tag](https://github.com/jobinthompu/YARN-Application-Monitoring-with-NiFi/blob/master/Resources/images/5.PutDistributedMapCache.jpg)
+8) Create and start two sets of DistributedMapCache controller services: 2 DistributedMapCacheClientService, 2 DistributedMapCacheServer for 1hr jobs and 10hr jobs so that we keep track of all the applications crossed 1hr and 10hr and no duplicate alerts for same are sent.
 
-8) Lets auto terminate Failure relationship and connect success relationship to PutEmail processorwhich will sent out email for any new failed/killed application.
+![alt tag](https://github.com/jobinthompu/YARN-Long-Running-Application-Monitoring-with-NiFi/blob/master/Resources/images/6.DistributedMapCacheServers.jpg)
+
+ Make sure those DistributedMapCacheServer run on different ports
+ 
+7) Add a two PutDistributedMapCache processors to update the cache with jobs ran past 1hr and 10hrs respectively. Configure it as below adding Distributed cache service.
+
+![alt tag](https://github.com/jobinthompu/YARN-Long-Running-Application-Monitoring-with-NiFi/blob/master/Resources/images/7.Save_hr_Alerted_Jobs.jpg)
+
+8) Lets auto terminate Failure relationship and connect success relationship to PutEmail processor which will sent out email for any new Yarn Application which crossed the threshold of 1hr and 10hr .
 
 9) Make sure you have formatted the email body and subject to have all information about the failed job:
 
-![alt tag](https://github.com/jobinthompu/YARN-Application-Monitoring-with-NiFi/blob/master/Resources/images/6.PutEmail.jpg)
+![alt tag](https://github.com/jobinthompu/YARN-Long-Running-Application-Monitoring-with-NiFi/blob/master/Resources/images/8.Alert_hr_long_Job.jpg)
 
-10) Auto terminate success and failure relationship for PutEmail processor. Once you start the Flow, you will get alerts for each Killed/Failed Yarn application. My Alert would look like below:
+10) Auto terminate success and failure relationship for PutEmail processor. Once flow is completed, it would look something like below:
 
-![alt tag](https://github.com/jobinthompu/YARN-Application-Monitoring-with-NiFi/blob/master/Resources/images/7.Email.jpg)
+![alt tag](https://github.com/jobinthompu/YARN-Long-Running-Application-Monitoring-with-NiFi/blob/master/Resources/images/9.Completed_Flow.jpg)
 
-Note: Now you can configure your GetHTTP Processor to query YARN to find long running applications
+11) Once you start the Flow, you will get alerts for each Yarn application which cross the threshold set which is 1hr and 10hr. My Email Alert would look like below:
 
-* You can also refer my HCC Article [here](https://community.hortonworks.com/articles/34147/nifi-security-user-authentication-with-kerberos.html)
+![alt tag](https://github.com/jobinthompu/YARN-Long-Running-Application-Monitoring-with-NiFi/blob/master/Resources/images/10.Email.jpg)
+
 
 Thanks,
 
