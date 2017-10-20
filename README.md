@@ -6,7 +6,9 @@ Simple NiFi flow to monitor and Alert on a Long Running YARN Application.
 
 
 ## Introduction
+
 - Here is a small demo how NiFi can help you monitor and alert on Long Running YARN Applications.
+- You can download the flow XML I have created [here](https://github.com/jobinthompu/YARN-Long-Running-Application-Monitoring-with-NiFi/blob/master/Resources/flow/YARN-Long-Running-Jobs.xml)
 
 ## Prerequisite
 

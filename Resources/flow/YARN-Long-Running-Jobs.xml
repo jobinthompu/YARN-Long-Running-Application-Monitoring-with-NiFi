@@ -1,0 +1,1487 @@
+<?xml version="1.0" ?>
+<template encoding-version="1.1">
+  <description>YARN-Long-Running-Jobs</description>
+  <groupId>7c84501d-d10c-407c-b9f3-1d80e38fe36a</groupId>
+  <name>YARN-Long-Running-Jobs</name>
+  <snippet>
+    <controllerServices>
+      <id>0217f8e1-9131-32e5-0000-000000000000</id>
+      <parentGroupId>46f95fe5-3024-31d8-0000-000000000000</parentGroupId>
+      <bundle>
+        <artifact>nifi-distributed-cache-services-nar</artifact>
+        <group>org.apache.nifi</group>
+        <version>1.2.0.3.0.0.0-452</version>
+      </bundle>
+      <comments></comments>
+      <descriptors>
+        <entry>
+          <key>Server Hostname</key>
+          <value>
+            <name>Server Hostname</name>
+          </value>
+        </entry>
+        <entry>
+          <key>Server Port</key>
+          <value>
+            <name>Server Port</name>
+          </value>
+        </entry>
+        <entry>
+          <key>SSL Context Service</key>
+          <value>
+            <identifiesControllerService>org.apache.nifi.ssl.SSLContextService</identifiesControllerService>
+            <name>SSL Context Service</name>
+          </value>
+        </entry>
+        <entry>
+          <key>Communications Timeout</key>
+          <value>
+            <name>Communications Timeout</name>
+          </value>
+        </entry>
+      </descriptors>
+      <name>1hr-Cache-Client</name>
+      <persistsState>false</persistsState>
+      <properties>
+        <entry>
+          <key>Server Hostname</key>
+          <value>localhost</value>
+        </entry>
+        <entry>
+          <key>Server Port</key>
+        </entry>
+        <entry>
+          <key>SSL Context Service</key>
+        </entry>
+        <entry>
+          <key>Communications Timeout</key>
+        </entry>
+      </properties>
+      <state>ENABLED</state>
+      <type>org.apache.nifi.distributed.cache.client.DistributedMapCacheClientService</type>
+    </controllerServices>
+    <controllerServices>
+      <id>155655e7-d776-39a6-0000-000000000000</id>
+      <parentGroupId>46f95fe5-3024-31d8-0000-000000000000</parentGroupId>
+      <bundle>
+        <artifact>nifi-distributed-cache-services-nar</artifact>
+        <group>org.apache.nifi</group>
+        <version>1.2.0.3.0.0.0-452</version>
+      </bundle>
+      <comments></comments>
+      <descriptors>
+        <entry>
+          <key>Server Hostname</key>
+          <value>
+            <name>Server Hostname</name>
+          </value>
+        </entry>
+        <entry>
+          <key>Server Port</key>
+          <value>
+            <name>Server Port</name>
+          </value>
+        </entry>
+        <entry>
+          <key>SSL Context Service</key>
+          <value>
+            <identifiesControllerService>org.apache.nifi.ssl.SSLContextService</identifiesControllerService>
+            <name>SSL Context Service</name>
+          </value>
+        </entry>
+        <entry>
+          <key>Communications Timeout</key>
+          <value>
+            <name>Communications Timeout</name>
+          </value>
+        </entry>
+      </descriptors>
+      <name>10hr-Cache-Client</name>
+      <persistsState>false</persistsState>
+      <properties>
+        <entry>
+          <key>Server Hostname</key>
+          <value>localhost</value>
+        </entry>
+        <entry>
+          <key>Server Port</key>
+          <value>4558</value>
+        </entry>
+        <entry>
+          <key>SSL Context Service</key>
+        </entry>
+        <entry>
+          <key>Communications Timeout</key>
+        </entry>
+      </properties>
+      <state>ENABLED</state>
+      <type>org.apache.nifi.distributed.cache.client.DistributedMapCacheClientService</type>
+    </controllerServices>
+    <processGroups>
+      <id>cec7a0af-98bd-3db9-0000-000000000000</id>
+      <parentGroupId>46f95fe5-3024-31d8-0000-000000000000</parentGroupId>
+      <position>
+        <x>0.0</x>
+        <y>0.0</y>
+      </position>
+      <comments>YARN-Long-Running-Jobs</comments>
+      <contents>
+        <connections>
+          <id>9093895e-7557-3002-0000-000000000000</id>
+          <parentGroupId>cec7a0af-98bd-3db9-0000-000000000000</parentGroupId>
+          <backPressureDataSizeThreshold>0 MB</backPressureDataSizeThreshold>
+          <backPressureObjectThreshold>0</backPressureObjectThreshold>
+          <destination>
+            <groupId>cec7a0af-98bd-3db9-0000-000000000000</groupId>
+            <id>a827de8f-d6c8-3a7e-0000-000000000000</id>
+            <type>PROCESSOR</type>
+          </destination>
+          <flowFileExpiration>0 sec</flowFileExpiration>
+          <labelIndex>1</labelIndex>
+          <name></name>
+          <selectedRelationships>matched</selectedRelationships>
+          <source>
+            <groupId>cec7a0af-98bd-3db9-0000-000000000000</groupId>
+            <id>618a48b9-cb67-3467-0000-000000000000</id>
+            <type>PROCESSOR</type>
+          </source>
+          <zIndex>0</zIndex>
+        </connections>
+        <connections>
+          <id>9bdf52d9-4a4e-3dd8-0000-000000000000</id>
+          <parentGroupId>cec7a0af-98bd-3db9-0000-000000000000</parentGroupId>
+          <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+          <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+          <destination>
+            <groupId>cec7a0af-98bd-3db9-0000-000000000000</groupId>
+            <id>75a73044-5de7-3958-0000-000000000000</id>
+            <type>PROCESSOR</type>
+          </destination>
+          <flowFileExpiration>0 sec</flowFileExpiration>
+          <labelIndex>1</labelIndex>
+          <name></name>
+          <selectedRelationships>10hr</selectedRelationships>
+          <source>
+            <groupId>cec7a0af-98bd-3db9-0000-000000000000</groupId>
+            <id>a827de8f-d6c8-3a7e-0000-000000000000</id>
+            <type>PROCESSOR</type>
+          </source>
+          <zIndex>0</zIndex>
+        </connections>
+        <connections>
+          <id>ada7b69a-cdd7-3ef8-0000-000000000000</id>
+          <parentGroupId>cec7a0af-98bd-3db9-0000-000000000000</parentGroupId>
+          <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+          <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+          <destination>
+            <groupId>cec7a0af-98bd-3db9-0000-000000000000</groupId>
+            <id>076b548f-b4b4-33dd-0000-000000000000</id>
+            <type>PROCESSOR</type>
+          </destination>
+          <flowFileExpiration>0 sec</flowFileExpiration>
+          <labelIndex>1</labelIndex>
+          <name></name>
+          <selectedRelationships>success</selectedRelationships>
+          <source>
+            <groupId>cec7a0af-98bd-3db9-0000-000000000000</groupId>
+            <id>75a73044-5de7-3958-0000-000000000000</id>
+            <type>PROCESSOR</type>
+          </source>
+          <zIndex>0</zIndex>
+        </connections>
+        <connections>
+          <id>cbc72785-ea66-3ef7-0000-000000000000</id>
+          <parentGroupId>cec7a0af-98bd-3db9-0000-000000000000</parentGroupId>
+          <backPressureDataSizeThreshold>0 MB</backPressureDataSizeThreshold>
+          <backPressureObjectThreshold>0</backPressureObjectThreshold>
+          <destination>
+            <groupId>cec7a0af-98bd-3db9-0000-000000000000</groupId>
+            <id>618a48b9-cb67-3467-0000-000000000000</id>
+            <type>PROCESSOR</type>
+          </destination>
+          <flowFileExpiration>0 sec</flowFileExpiration>
+          <labelIndex>1</labelIndex>
+          <name></name>
+          <selectedRelationships>split</selectedRelationships>
+          <source>
+            <groupId>cec7a0af-98bd-3db9-0000-000000000000</groupId>
+            <id>ef8c8d2f-a361-3a05-0000-000000000000</id>
+            <type>PROCESSOR</type>
+          </source>
+          <zIndex>0</zIndex>
+        </connections>
+        <connections>
+          <id>fb53287a-4315-3a3e-0000-000000000000</id>
+          <parentGroupId>cec7a0af-98bd-3db9-0000-000000000000</parentGroupId>
+          <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+          <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+          <destination>
+            <groupId>cec7a0af-98bd-3db9-0000-000000000000</groupId>
+            <id>2ea67cdf-d03c-31c8-0000-000000000000</id>
+            <type>PROCESSOR</type>
+          </destination>
+          <flowFileExpiration>0 sec</flowFileExpiration>
+          <labelIndex>1</labelIndex>
+          <name></name>
+          <selectedRelationships>1hr</selectedRelationships>
+          <source>
+            <groupId>cec7a0af-98bd-3db9-0000-000000000000</groupId>
+            <id>a827de8f-d6c8-3a7e-0000-000000000000</id>
+            <type>PROCESSOR</type>
+          </source>
+          <zIndex>0</zIndex>
+        </connections>
+        <connections>
+          <id>08d63b38-b4f0-3b2f-0000-000000000000</id>
+          <parentGroupId>cec7a0af-98bd-3db9-0000-000000000000</parentGroupId>
+          <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+          <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+          <destination>
+            <groupId>cec7a0af-98bd-3db9-0000-000000000000</groupId>
+            <id>b6884cb6-1be8-3dd0-0000-000000000000</id>
+            <type>PROCESSOR</type>
+          </destination>
+          <flowFileExpiration>0 sec</flowFileExpiration>
+          <labelIndex>1</labelIndex>
+          <name></name>
+          <selectedRelationships>success</selectedRelationships>
+          <source>
+            <groupId>cec7a0af-98bd-3db9-0000-000000000000</groupId>
+            <id>236171a6-d547-3464-0000-000000000000</id>
+            <type>PROCESSOR</type>
+          </source>
+          <zIndex>0</zIndex>
+        </connections>
+        <connections>
+          <id>2e9332a0-b961-371f-0000-000000000000</id>
+          <parentGroupId>cec7a0af-98bd-3db9-0000-000000000000</parentGroupId>
+          <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+          <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+          <destination>
+            <groupId>cec7a0af-98bd-3db9-0000-000000000000</groupId>
+            <id>75e8cfb0-9518-3bc3-0000-000000000000</id>
+            <type>PROCESSOR</type>
+          </destination>
+          <flowFileExpiration>0 sec</flowFileExpiration>
+          <labelIndex>1</labelIndex>
+          <name></name>
+          <selectedRelationships>success</selectedRelationships>
+          <source>
+            <groupId>cec7a0af-98bd-3db9-0000-000000000000</groupId>
+            <id>2ea67cdf-d03c-31c8-0000-000000000000</id>
+            <type>PROCESSOR</type>
+          </source>
+          <zIndex>0</zIndex>
+        </connections>
+        <connections>
+          <id>50d6641d-1704-39b5-0000-000000000000</id>
+          <parentGroupId>cec7a0af-98bd-3db9-0000-000000000000</parentGroupId>
+          <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+          <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+          <destination>
+            <groupId>cec7a0af-98bd-3db9-0000-000000000000</groupId>
+            <id>ef8c8d2f-a361-3a05-0000-000000000000</id>
+            <type>PROCESSOR</type>
+          </destination>
+          <flowFileExpiration>0 sec</flowFileExpiration>
+          <labelIndex>1</labelIndex>
+          <name></name>
+          <selectedRelationships>unmatched</selectedRelationships>
+          <source>
+            <groupId>cec7a0af-98bd-3db9-0000-000000000000</groupId>
+            <id>b6884cb6-1be8-3dd0-0000-000000000000</id>
+            <type>PROCESSOR</type>
+          </source>
+          <zIndex>0</zIndex>
+        </connections>
+        <processors>
+          <id>a827de8f-d6c8-3a7e-0000-000000000000</id>
+          <parentGroupId>cec7a0af-98bd-3db9-0000-000000000000</parentGroupId>
+          <position>
+            <x>464.3992919921875</x>
+            <y>-21.851257801055908</y>
+          </position>
+          <bundle>
+            <artifact>nifi-standard-nar</artifact>
+            <group>org.apache.nifi</group>
+            <version>1.2.0.3.0.0.0-452</version>
+          </bundle>
+          <config>
+            <bulletinLevel>WARN</bulletinLevel>
+            <comments></comments>
+            <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+            <descriptors>
+              <entry>
+                <key>Routing Strategy</key>
+                <value>
+                  <name>Routing Strategy</name>
+                </value>
+              </entry>
+              <entry>
+                <key>10hr</key>
+                <value>
+                  <name>10hr</name>
+                </value>
+              </entry>
+              <entry>
+                <key>1hr</key>
+                <value>
+                  <name>1hr</name>
+                </value>
+              </entry>
+            </descriptors>
+            <executionNode>ALL</executionNode>
+            <lossTolerant>false</lossTolerant>
+            <penaltyDuration>30 sec</penaltyDuration>
+            <properties>
+              <entry>
+                <key>Routing Strategy</key>
+                <value>Route to Property name</value>
+              </entry>
+              <entry>
+                <key>10hr</key>
+                <value>${ElapsedTime:gt(36000000)}</value>
+              </entry>
+              <entry>
+                <key>1hr</key>
+                <value>${ElapsedTime:gt(3600000)}</value>
+              </entry>
+            </properties>
+            <runDurationMillis>0</runDurationMillis>
+            <schedulingPeriod>0 sec</schedulingPeriod>
+            <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+            <yieldDuration>1 sec</yieldDuration>
+          </config>
+          <name>Check_Elapsedtime_1hr_10hr</name>
+          <relationships>
+            <autoTerminate>false</autoTerminate>
+            <name>10hr</name>
+          </relationships>
+          <relationships>
+            <autoTerminate>false</autoTerminate>
+            <name>1hr</name>
+          </relationships>
+          <relationships>
+            <autoTerminate>true</autoTerminate>
+            <name>unmatched</name>
+          </relationships>
+          <style></style>
+          <type>org.apache.nifi.processors.standard.RouteOnAttribute</type>
+        </processors>
+        <processors>
+          <id>b6884cb6-1be8-3dd0-0000-000000000000</id>
+          <parentGroupId>cec7a0af-98bd-3db9-0000-000000000000</parentGroupId>
+          <position>
+            <x>456.001661376953</x>
+            <y>-230.92508178710935</y>
+          </position>
+          <bundle>
+            <artifact>nifi-standard-nar</artifact>
+            <group>org.apache.nifi</group>
+            <version>1.2.0.3.0.0.0-452</version>
+          </bundle>
+          <config>
+            <bulletinLevel>WARN</bulletinLevel>
+            <comments></comments>
+            <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+            <descriptors>
+              <entry>
+                <key>Routing Strategy</key>
+                <value>
+                  <name>Routing Strategy</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Matching Strategy</key>
+                <value>
+                  <name>Matching Strategy</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Character Set</key>
+                <value>
+                  <name>Character Set</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Ignore Leading/Trailing Whitespace</key>
+                <value>
+                  <name>Ignore Leading/Trailing Whitespace</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Ignore Case</key>
+                <value>
+                  <name>Ignore Case</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Grouping Regular Expression</key>
+                <value>
+                  <name>Grouping Regular Expression</name>
+                </value>
+              </entry>
+              <entry>
+                <key>null</key>
+                <value>
+                  <name>null</name>
+                </value>
+              </entry>
+            </descriptors>
+            <executionNode>ALL</executionNode>
+            <lossTolerant>false</lossTolerant>
+            <penaltyDuration>30 sec</penaltyDuration>
+            <properties>
+              <entry>
+                <key>Routing Strategy</key>
+                <value>Route to each matching Property Name</value>
+              </entry>
+              <entry>
+                <key>Matching Strategy</key>
+                <value>Contains</value>
+              </entry>
+              <entry>
+                <key>Character Set</key>
+                <value>UTF-8</value>
+              </entry>
+              <entry>
+                <key>Ignore Leading/Trailing Whitespace</key>
+                <value>true</value>
+              </entry>
+              <entry>
+                <key>Ignore Case</key>
+                <value>false</value>
+              </entry>
+              <entry>
+                <key>Grouping Regular Expression</key>
+              </entry>
+              <entry>
+                <key>null</key>
+                <value>"apps":null</value>
+              </entry>
+            </properties>
+            <runDurationMillis>0</runDurationMillis>
+            <schedulingPeriod>0 sec</schedulingPeriod>
+            <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+            <yieldDuration>1 sec</yieldDuration>
+          </config>
+          <name>Check_For_Empty_Json</name>
+          <relationships>
+            <autoTerminate>true</autoTerminate>
+            <name>null</name>
+          </relationships>
+          <relationships>
+            <autoTerminate>true</autoTerminate>
+            <name>original</name>
+          </relationships>
+          <relationships>
+            <autoTerminate>false</autoTerminate>
+            <name>unmatched</name>
+          </relationships>
+          <style></style>
+          <type>org.apache.nifi.processors.standard.RouteText</type>
+        </processors>
+        <processors>
+          <id>ef8c8d2f-a361-3a05-0000-000000000000</id>
+          <parentGroupId>cec7a0af-98bd-3db9-0000-000000000000</parentGroupId>
+          <position>
+            <x>1038.6598510742188</x>
+            <y>-237.3050994873047</y>
+          </position>
+          <bundle>
+            <artifact>nifi-standard-nar</artifact>
+            <group>org.apache.nifi</group>
+            <version>1.2.0.3.0.0.0-452</version>
+          </bundle>
+          <config>
+            <bulletinLevel>WARN</bulletinLevel>
+            <comments></comments>
+            <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+            <descriptors>
+              <entry>
+                <key>JsonPath Expression</key>
+                <value>
+                  <name>JsonPath Expression</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Null Value Representation</key>
+                <value>
+                  <name>Null Value Representation</name>
+                </value>
+              </entry>
+            </descriptors>
+            <executionNode>ALL</executionNode>
+            <lossTolerant>false</lossTolerant>
+            <penaltyDuration>30 sec</penaltyDuration>
+            <properties>
+              <entry>
+                <key>JsonPath Expression</key>
+                <value>$.apps.app</value>
+              </entry>
+              <entry>
+                <key>Null Value Representation</key>
+                <value>the string 'null'</value>
+              </entry>
+            </properties>
+            <runDurationMillis>0</runDurationMillis>
+            <schedulingPeriod>0 sec</schedulingPeriod>
+            <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+            <yieldDuration>1 sec</yieldDuration>
+          </config>
+          <name>Separate_Jobs</name>
+          <relationships>
+            <autoTerminate>true</autoTerminate>
+            <name>failure</name>
+          </relationships>
+          <relationships>
+            <autoTerminate>true</autoTerminate>
+            <name>original</name>
+          </relationships>
+          <relationships>
+            <autoTerminate>false</autoTerminate>
+            <name>split</name>
+          </relationships>
+          <style></style>
+          <type>org.apache.nifi.processors.standard.SplitJson</type>
+        </processors>
+        <processors>
+          <id>076b548f-b4b4-33dd-0000-000000000000</id>
+          <parentGroupId>cec7a0af-98bd-3db9-0000-000000000000</parentGroupId>
+          <position>
+            <x>1044.1706706159807</x>
+            <y>167.128126132558</y>
+          </position>
+          <bundle>
+            <artifact>nifi-standard-nar</artifact>
+            <group>org.apache.nifi</group>
+            <version>1.2.0.3.0.0.0-452</version>
+          </bundle>
+          <config>
+            <bulletinLevel>WARN</bulletinLevel>
+            <comments></comments>
+            <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+            <descriptors>
+              <entry>
+                <key>SMTP Hostname</key>
+                <value>
+                  <name>SMTP Hostname</name>
+                </value>
+              </entry>
+              <entry>
+                <key>SMTP Port</key>
+                <value>
+                  <name>SMTP Port</name>
+                </value>
+              </entry>
+              <entry>
+                <key>SMTP Username</key>
+                <value>
+                  <name>SMTP Username</name>
+                </value>
+              </entry>
+              <entry>
+                <key>SMTP Password</key>
+                <value>
+                  <name>SMTP Password</name>
+                </value>
+              </entry>
+              <entry>
+                <key>SMTP Auth</key>
+                <value>
+                  <name>SMTP Auth</name>
+                </value>
+              </entry>
+              <entry>
+                <key>SMTP TLS</key>
+                <value>
+                  <name>SMTP TLS</name>
+                </value>
+              </entry>
+              <entry>
+                <key>SMTP Socket Factory</key>
+                <value>
+                  <name>SMTP Socket Factory</name>
+                </value>
+              </entry>
+              <entry>
+                <key>SMTP X-Mailer Header</key>
+                <value>
+                  <name>SMTP X-Mailer Header</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Content Type</key>
+                <value>
+                  <name>Content Type</name>
+                </value>
+              </entry>
+              <entry>
+                <key>From</key>
+                <value>
+                  <name>From</name>
+                </value>
+              </entry>
+              <entry>
+                <key>To</key>
+                <value>
+                  <name>To</name>
+                </value>
+              </entry>
+              <entry>
+                <key>CC</key>
+                <value>
+                  <name>CC</name>
+                </value>
+              </entry>
+              <entry>
+                <key>BCC</key>
+                <value>
+                  <name>BCC</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Subject</key>
+                <value>
+                  <name>Subject</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Message</key>
+                <value>
+                  <name>Message</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Attach File</key>
+                <value>
+                  <name>Attach File</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Include All Attributes In Message</key>
+                <value>
+                  <name>Include All Attributes In Message</name>
+                </value>
+              </entry>
+            </descriptors>
+            <executionNode>ALL</executionNode>
+            <lossTolerant>false</lossTolerant>
+            <penaltyDuration>30 sec</penaltyDuration>
+            <properties>
+              <entry>
+                <key>SMTP Hostname</key>
+                <value>west.exch080.serverdata.net</value>
+              </entry>
+              <entry>
+                <key>SMTP Port</key>
+                <value>587</value>
+              </entry>
+              <entry>
+                <key>SMTP Username</key>
+                <value>jgeorge@hortonworks.com</value>
+              </entry>
+              <entry>
+                <key>SMTP Password</key>
+              </entry>
+              <entry>
+                <key>SMTP Auth</key>
+                <value>true</value>
+              </entry>
+              <entry>
+                <key>SMTP TLS</key>
+                <value>false</value>
+              </entry>
+              <entry>
+                <key>SMTP Socket Factory</key>
+                <value>javax.net.ssl.SSLSocketFactory</value>
+              </entry>
+              <entry>
+                <key>SMTP X-Mailer Header</key>
+                <value>NiFi</value>
+              </entry>
+              <entry>
+                <key>Content Type</key>
+                <value>text/plain</value>
+              </entry>
+              <entry>
+                <key>From</key>
+                <value>jgeorge@hortonworks.com</value>
+              </entry>
+              <entry>
+                <key>To</key>
+                <value>jgeorge@hortonworks.com</value>
+              </entry>
+              <entry>
+                <key>CC</key>
+              </entry>
+              <entry>
+                <key>BCC</key>
+              </entry>
+              <entry>
+                <key>Subject</key>
+                <value>YARN Application with id: ${id} is Running since 10 Hour</value>
+              </entry>
+              <entry>
+                <key>Message</key>
+                <value>YARN Application With id: ${id} ${state}
+
+DETAILS:
+-----------------------------------------------------------------------------------------------
+Application Id			:		${id} 
+Application Status		:		${state}
+Submitted by User		:		${user}
+Queue Submitted			:		${queue}
+Application Name		:		${app-name}
+Application Type		:		${applicationType}
+Application Url	 		:		${trackingUrl}
+Time Elapsed 			:		${ElapsedTime}
+-----------------------------------------------------------------------------------------------</value>
+              </entry>
+              <entry>
+                <key>Attach File</key>
+                <value>false</value>
+              </entry>
+              <entry>
+                <key>Include All Attributes In Message</key>
+                <value>false</value>
+              </entry>
+            </properties>
+            <runDurationMillis>0</runDurationMillis>
+            <schedulingPeriod>0 sec</schedulingPeriod>
+            <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+            <yieldDuration>1 sec</yieldDuration>
+          </config>
+          <name>Alert_10hr_long_Job</name>
+          <relationships>
+            <autoTerminate>true</autoTerminate>
+            <name>failure</name>
+          </relationships>
+          <relationships>
+            <autoTerminate>true</autoTerminate>
+            <name>success</name>
+          </relationships>
+          <style></style>
+          <type>org.apache.nifi.processors.standard.PutEmail</type>
+        </processors>
+        <processors>
+          <id>236171a6-d547-3464-0000-000000000000</id>
+          <parentGroupId>cec7a0af-98bd-3db9-0000-000000000000</parentGroupId>
+          <position>
+            <x>-112.99160766601562</x>
+            <y>-231.2206039428711</y>
+          </position>
+          <bundle>
+            <artifact>nifi-standard-nar</artifact>
+            <group>org.apache.nifi</group>
+            <version>1.2.0.3.0.0.0-452</version>
+          </bundle>
+          <config>
+            <bulletinLevel>WARN</bulletinLevel>
+            <comments></comments>
+            <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+            <descriptors>
+              <entry>
+                <key>URL</key>
+                <value>
+                  <name>URL</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Filename</key>
+                <value>
+                  <name>Filename</name>
+                </value>
+              </entry>
+              <entry>
+                <key>SSL Context Service</key>
+                <value>
+                  <identifiesControllerService>org.apache.nifi.ssl.SSLContextService</identifiesControllerService>
+                  <name>SSL Context Service</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Username</key>
+                <value>
+                  <name>Username</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Password</key>
+                <value>
+                  <name>Password</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Connection Timeout</key>
+                <value>
+                  <name>Connection Timeout</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Data Timeout</key>
+                <value>
+                  <name>Data Timeout</name>
+                </value>
+              </entry>
+              <entry>
+                <key>User Agent</key>
+                <value>
+                  <name>User Agent</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Accept Content-Type</key>
+                <value>
+                  <name>Accept Content-Type</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Follow Redirects</key>
+                <value>
+                  <name>Follow Redirects</name>
+                </value>
+              </entry>
+              <entry>
+                <key>redirect-cookie-policy</key>
+                <value>
+                  <name>redirect-cookie-policy</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Proxy Host</key>
+                <value>
+                  <name>Proxy Host</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Proxy Port</key>
+                <value>
+                  <name>Proxy Port</name>
+                </value>
+              </entry>
+            </descriptors>
+            <executionNode>PRIMARY</executionNode>
+            <lossTolerant>false</lossTolerant>
+            <penaltyDuration>30 sec</penaltyDuration>
+            <properties>
+              <entry>
+                <key>URL</key>
+                <value>http://sandbox-hdf.hortonworks.com:18088/ws/v1/cluster/apps?states=RUNNING</value>
+              </entry>
+              <entry>
+                <key>Filename</key>
+                <value>Job_History</value>
+              </entry>
+              <entry>
+                <key>SSL Context Service</key>
+              </entry>
+              <entry>
+                <key>Username</key>
+              </entry>
+              <entry>
+                <key>Password</key>
+              </entry>
+              <entry>
+                <key>Connection Timeout</key>
+                <value>30 sec</value>
+              </entry>
+              <entry>
+                <key>Data Timeout</key>
+                <value>30 sec</value>
+              </entry>
+              <entry>
+                <key>User Agent</key>
+              </entry>
+              <entry>
+                <key>Accept Content-Type</key>
+              </entry>
+              <entry>
+                <key>Follow Redirects</key>
+                <value>false</value>
+              </entry>
+              <entry>
+                <key>redirect-cookie-policy</key>
+                <value>default</value>
+              </entry>
+              <entry>
+                <key>Proxy Host</key>
+              </entry>
+              <entry>
+                <key>Proxy Port</key>
+              </entry>
+            </properties>
+            <runDurationMillis>0</runDurationMillis>
+            <schedulingPeriod>10 sec</schedulingPeriod>
+            <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+            <yieldDuration>1 sec</yieldDuration>
+          </config>
+          <name>Query_ResourceManager</name>
+          <relationships>
+            <autoTerminate>false</autoTerminate>
+            <name>success</name>
+          </relationships>
+          <style></style>
+          <type>org.apache.nifi.processors.standard.GetHTTP</type>
+        </processors>
+        <processors>
+          <id>2ea67cdf-d03c-31c8-0000-000000000000</id>
+          <parentGroupId>cec7a0af-98bd-3db9-0000-000000000000</parentGroupId>
+          <position>
+            <x>-109.39909789871763</x>
+            <y>148.98658911782218</y>
+          </position>
+          <bundle>
+            <artifact>nifi-standard-nar</artifact>
+            <group>org.apache.nifi</group>
+            <version>1.2.0.3.0.0.0-452</version>
+          </bundle>
+          <config>
+            <bulletinLevel>WARN</bulletinLevel>
+            <comments></comments>
+            <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+            <descriptors>
+              <entry>
+                <key>Cache Entry Identifier</key>
+                <value>
+                  <name>Cache Entry Identifier</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Distributed Cache Service</key>
+                <value>
+                  <identifiesControllerService>org.apache.nifi.distributed.cache.client.DistributedMapCacheClient</identifiesControllerService>
+                  <name>Distributed Cache Service</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Cache update strategy</key>
+                <value>
+                  <name>Cache update strategy</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Max cache entry size</key>
+                <value>
+                  <name>Max cache entry size</name>
+                </value>
+              </entry>
+            </descriptors>
+            <executionNode>ALL</executionNode>
+            <lossTolerant>false</lossTolerant>
+            <penaltyDuration>30 sec</penaltyDuration>
+            <properties>
+              <entry>
+                <key>Cache Entry Identifier</key>
+                <value>${id}</value>
+              </entry>
+              <entry>
+                <key>Distributed Cache Service</key>
+                <value>0217f8e1-9131-32e5-0000-000000000000</value>
+              </entry>
+              <entry>
+                <key>Cache update strategy</key>
+                <value>keeporiginal</value>
+              </entry>
+              <entry>
+                <key>Max cache entry size</key>
+                <value>3 MB</value>
+              </entry>
+            </properties>
+            <runDurationMillis>0</runDurationMillis>
+            <schedulingPeriod>0 sec</schedulingPeriod>
+            <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+            <yieldDuration>1 sec</yieldDuration>
+          </config>
+          <name>Save_1hr_Alerted_Jobs</name>
+          <relationships>
+            <autoTerminate>true</autoTerminate>
+            <name>failure</name>
+          </relationships>
+          <relationships>
+            <autoTerminate>false</autoTerminate>
+            <name>success</name>
+          </relationships>
+          <style></style>
+          <type>org.apache.nifi.processors.standard.PutDistributedMapCache</type>
+        </processors>
+        <processors>
+          <id>618a48b9-cb67-3467-0000-000000000000</id>
+          <parentGroupId>cec7a0af-98bd-3db9-0000-000000000000</parentGroupId>
+          <position>
+            <x>-113.29424256022662</x>
+            <y>-28.30060685173987</y>
+          </position>
+          <bundle>
+            <artifact>nifi-standard-nar</artifact>
+            <group>org.apache.nifi</group>
+            <version>1.2.0.3.0.0.0-452</version>
+          </bundle>
+          <config>
+            <bulletinLevel>WARN</bulletinLevel>
+            <comments></comments>
+            <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+            <descriptors>
+              <entry>
+                <key>Destination</key>
+                <value>
+                  <name>Destination</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Return Type</key>
+                <value>
+                  <name>Return Type</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Path Not Found Behavior</key>
+                <value>
+                  <name>Path Not Found Behavior</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Null Value Representation</key>
+                <value>
+                  <name>Null Value Representation</name>
+                </value>
+              </entry>
+              <entry>
+                <key>applicationType</key>
+                <value>
+                  <name>applicationType</name>
+                </value>
+              </entry>
+              <entry>
+                <key>app-name</key>
+                <value>
+                  <name>app-name</name>
+                </value>
+              </entry>
+              <entry>
+                <key>ElapsedTime</key>
+                <value>
+                  <name>ElapsedTime</name>
+                </value>
+              </entry>
+              <entry>
+                <key>filename</key>
+                <value>
+                  <name>filename</name>
+                </value>
+              </entry>
+              <entry>
+                <key>id</key>
+                <value>
+                  <name>id</name>
+                </value>
+              </entry>
+              <entry>
+                <key>queue</key>
+                <value>
+                  <name>queue</name>
+                </value>
+              </entry>
+              <entry>
+                <key>state</key>
+                <value>
+                  <name>state</name>
+                </value>
+              </entry>
+              <entry>
+                <key>trackingUrl</key>
+                <value>
+                  <name>trackingUrl</name>
+                </value>
+              </entry>
+              <entry>
+                <key>user</key>
+                <value>
+                  <name>user</name>
+                </value>
+              </entry>
+            </descriptors>
+            <executionNode>ALL</executionNode>
+            <lossTolerant>false</lossTolerant>
+            <penaltyDuration>30 sec</penaltyDuration>
+            <properties>
+              <entry>
+                <key>Destination</key>
+                <value>flowfile-attribute</value>
+              </entry>
+              <entry>
+                <key>Return Type</key>
+                <value>json</value>
+              </entry>
+              <entry>
+                <key>Path Not Found Behavior</key>
+                <value>warn</value>
+              </entry>
+              <entry>
+                <key>Null Value Representation</key>
+                <value>empty string</value>
+              </entry>
+              <entry>
+                <key>applicationType</key>
+                <value>$.applicationType</value>
+              </entry>
+              <entry>
+                <key>app-name</key>
+                <value>$.name</value>
+              </entry>
+              <entry>
+                <key>ElapsedTime</key>
+                <value>$.elapsedTime</value>
+              </entry>
+              <entry>
+                <key>filename</key>
+                <value>$.id</value>
+              </entry>
+              <entry>
+                <key>id</key>
+                <value>$.id</value>
+              </entry>
+              <entry>
+                <key>queue</key>
+                <value>$.queue</value>
+              </entry>
+              <entry>
+                <key>state</key>
+                <value>$.state</value>
+              </entry>
+              <entry>
+                <key>trackingUrl</key>
+                <value>$.trackingUrl</value>
+              </entry>
+              <entry>
+                <key>user</key>
+                <value>$.user</value>
+              </entry>
+            </properties>
+            <runDurationMillis>0</runDurationMillis>
+            <schedulingPeriod>0 sec</schedulingPeriod>
+            <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+            <yieldDuration>1 sec</yieldDuration>
+          </config>
+          <name>Extract_Job_Info</name>
+          <relationships>
+            <autoTerminate>true</autoTerminate>
+            <name>failure</name>
+          </relationships>
+          <relationships>
+            <autoTerminate>false</autoTerminate>
+            <name>matched</name>
+          </relationships>
+          <relationships>
+            <autoTerminate>true</autoTerminate>
+            <name>unmatched</name>
+          </relationships>
+          <style></style>
+          <type>org.apache.nifi.processors.standard.EvaluateJsonPath</type>
+        </processors>
+        <processors>
+          <id>75a73044-5de7-3958-0000-000000000000</id>
+          <parentGroupId>cec7a0af-98bd-3db9-0000-000000000000</parentGroupId>
+          <position>
+            <x>1041.817363282923</x>
+            <y>-36.58853967589425</y>
+          </position>
+          <bundle>
+            <artifact>nifi-standard-nar</artifact>
+            <group>org.apache.nifi</group>
+            <version>1.2.0.3.0.0.0-452</version>
+          </bundle>
+          <config>
+            <bulletinLevel>WARN</bulletinLevel>
+            <comments></comments>
+            <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+            <descriptors>
+              <entry>
+                <key>Cache Entry Identifier</key>
+                <value>
+                  <name>Cache Entry Identifier</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Distributed Cache Service</key>
+                <value>
+                  <identifiesControllerService>org.apache.nifi.distributed.cache.client.DistributedMapCacheClient</identifiesControllerService>
+                  <name>Distributed Cache Service</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Cache update strategy</key>
+                <value>
+                  <name>Cache update strategy</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Max cache entry size</key>
+                <value>
+                  <name>Max cache entry size</name>
+                </value>
+              </entry>
+            </descriptors>
+            <executionNode>ALL</executionNode>
+            <lossTolerant>false</lossTolerant>
+            <penaltyDuration>30 sec</penaltyDuration>
+            <properties>
+              <entry>
+                <key>Cache Entry Identifier</key>
+                <value>${id}</value>
+              </entry>
+              <entry>
+                <key>Distributed Cache Service</key>
+                <value>155655e7-d776-39a6-0000-000000000000</value>
+              </entry>
+              <entry>
+                <key>Cache update strategy</key>
+                <value>keeporiginal</value>
+              </entry>
+              <entry>
+                <key>Max cache entry size</key>
+                <value>3 MB</value>
+              </entry>
+            </properties>
+            <runDurationMillis>0</runDurationMillis>
+            <schedulingPeriod>0 sec</schedulingPeriod>
+            <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+            <yieldDuration>1 sec</yieldDuration>
+          </config>
+          <name>Save_10hr_Alerted_Jobs</name>
+          <relationships>
+            <autoTerminate>true</autoTerminate>
+            <name>failure</name>
+          </relationships>
+          <relationships>
+            <autoTerminate>false</autoTerminate>
+            <name>success</name>
+          </relationships>
+          <style></style>
+          <type>org.apache.nifi.processors.standard.PutDistributedMapCache</type>
+        </processors>
+        <processors>
+          <id>75e8cfb0-9518-3bc3-0000-000000000000</id>
+          <parentGroupId>cec7a0af-98bd-3db9-0000-000000000000</parentGroupId>
+          <position>
+            <x>470.9679728620745</x>
+            <y>157.65379141576113</y>
+          </position>
+          <bundle>
+            <artifact>nifi-standard-nar</artifact>
+            <group>org.apache.nifi</group>
+            <version>1.2.0.3.0.0.0-452</version>
+          </bundle>
+          <config>
+            <bulletinLevel>WARN</bulletinLevel>
+            <comments></comments>
+            <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+            <descriptors>
+              <entry>
+                <key>SMTP Hostname</key>
+                <value>
+                  <name>SMTP Hostname</name>
+                </value>
+              </entry>
+              <entry>
+                <key>SMTP Port</key>
+                <value>
+                  <name>SMTP Port</name>
+                </value>
+              </entry>
+              <entry>
+                <key>SMTP Username</key>
+                <value>
+                  <name>SMTP Username</name>
+                </value>
+              </entry>
+              <entry>
+                <key>SMTP Password</key>
+                <value>
+                  <name>SMTP Password</name>
+                </value>
+              </entry>
+              <entry>
+                <key>SMTP Auth</key>
+                <value>
+                  <name>SMTP Auth</name>
+                </value>
+              </entry>
+              <entry>
+                <key>SMTP TLS</key>
+                <value>
+                  <name>SMTP TLS</name>
+                </value>
+              </entry>
+              <entry>
+                <key>SMTP Socket Factory</key>
+                <value>
+                  <name>SMTP Socket Factory</name>
+                </value>
+              </entry>
+              <entry>
+                <key>SMTP X-Mailer Header</key>
+                <value>
+                  <name>SMTP X-Mailer Header</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Content Type</key>
+                <value>
+                  <name>Content Type</name>
+                </value>
+              </entry>
+              <entry>
+                <key>From</key>
+                <value>
+                  <name>From</name>
+                </value>
+              </entry>
+              <entry>
+                <key>To</key>
+                <value>
+                  <name>To</name>
+                </value>
+              </entry>
+              <entry>
+                <key>CC</key>
+                <value>
+                  <name>CC</name>
+                </value>
+              </entry>
+              <entry>
+                <key>BCC</key>
+                <value>
+                  <name>BCC</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Subject</key>
+                <value>
+                  <name>Subject</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Message</key>
+                <value>
+                  <name>Message</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Attach File</key>
+                <value>
+                  <name>Attach File</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Include All Attributes In Message</key>
+                <value>
+                  <name>Include All Attributes In Message</name>
+                </value>
+              </entry>
+            </descriptors>
+            <executionNode>ALL</executionNode>
+            <lossTolerant>false</lossTolerant>
+            <penaltyDuration>30 sec</penaltyDuration>
+            <properties>
+              <entry>
+                <key>SMTP Hostname</key>
+                <value>west.exch080.serverdata.net</value>
+              </entry>
+              <entry>
+                <key>SMTP Port</key>
+                <value>587</value>
+              </entry>
+              <entry>
+                <key>SMTP Username</key>
+                <value>jgeorge@hortonworks.com</value>
+              </entry>
+              <entry>
+                <key>SMTP Password</key>
+              </entry>
+              <entry>
+                <key>SMTP Auth</key>
+                <value>true</value>
+              </entry>
+              <entry>
+                <key>SMTP TLS</key>
+                <value>false</value>
+              </entry>
+              <entry>
+                <key>SMTP Socket Factory</key>
+                <value>javax.net.ssl.SSLSocketFactory</value>
+              </entry>
+              <entry>
+                <key>SMTP X-Mailer Header</key>
+                <value>NiFi</value>
+              </entry>
+              <entry>
+                <key>Content Type</key>
+                <value>text/plain</value>
+              </entry>
+              <entry>
+                <key>From</key>
+                <value>jgeorge@hortonworks.com</value>
+              </entry>
+              <entry>
+                <key>To</key>
+                <value>jgeorge@hortonworks.com</value>
+              </entry>
+              <entry>
+                <key>CC</key>
+              </entry>
+              <entry>
+                <key>BCC</key>
+              </entry>
+              <entry>
+                <key>Subject</key>
+                <value>YARN Application with id: ${id} is Running since 1 Hour</value>
+              </entry>
+              <entry>
+                <key>Message</key>
+                <value>YARN Application With id: ${id} ${state}
+
+DETAILS:
+-----------------------------------------------------------------------------------------------
+Application Id			:		${id} 
+Application Status		:		${state}
+Submitted by User		:		${user}
+Queue Submitted			:		${queue}
+Application Name		:		${app-name}
+Application Type		:		${applicationType}
+Application Url	 		:		${trackingUrl}
+Time Elapsed 			:		${ElapsedTime}
+-----------------------------------------------------------------------------------------------</value>
+              </entry>
+              <entry>
+                <key>Attach File</key>
+                <value>false</value>
+              </entry>
+              <entry>
+                <key>Include All Attributes In Message</key>
+                <value>false</value>
+              </entry>
+            </properties>
+            <runDurationMillis>0</runDurationMillis>
+            <schedulingPeriod>0 sec</schedulingPeriod>
+            <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+            <yieldDuration>1 sec</yieldDuration>
+          </config>
+          <name>Alert_1hr_long_Job</name>
+          <relationships>
+            <autoTerminate>true</autoTerminate>
+            <name>failure</name>
+          </relationships>
+          <relationships>
+            <autoTerminate>true</autoTerminate>
+            <name>success</name>
+          </relationships>
+          <style></style>
+          <type>org.apache.nifi.processors.standard.PutEmail</type>
+        </processors>
+      </contents>
+      <name>YARN-Long-Running-Jobs</name>
+    </processGroups>
+  </snippet>
+  <timestamp>10/20/2017 19:18:46 UTC</timestamp>
+</template>
