@@ -8,13 +8,6 @@ Simple NiFi flow to monitor and Alert on a Long Running YARN Application.
 ## Introduction
 - Here is a small demo how NiFi can help you monitor and alert on Long Running YARN Applications.
 
-## TEST Will decide about Video Later
-
-- Here you can view the screen recording that Demonstrates how it works!
-
-[![YARN Application Monitoring with NiFi](https://github.com/jobinthompu/YARN-Application-Monitoring-with-NiFi/blob/master/Resources/images/YARN-Application-Monitoring-with-NiFi.jpg)](https://youtu.be/Ez9NPIS0XS8 "YARN Application Monitoring with NiFi - Click to Watch!")
-
-
 ## Prerequisite
 
 - Make sure you have your HDF Sandbox up and running. you can download HDF Sandbox [here](https://hortonworks.com/downloads/)
